@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && _isJumping && (_startJumpTime + _maxJumpTime > Time.time))
         {
             rb.AddForce(Vector3.up * _jumpAcceleration, ForceMode.Acceleration);
-            Debug.Log("WorkWork");
         }
 
 
