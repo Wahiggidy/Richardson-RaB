@@ -20,7 +20,7 @@ public class FollowPlayer : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             turn.x += Input.GetAxis("Mouse X") * sensitivity;
-            turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+            //turn.y += Input.GetAxis("Mouse Y") * sensitivity;
             transform.localRotation = Quaternion.Euler(-turn.y, turn.x, 0);
         }
 

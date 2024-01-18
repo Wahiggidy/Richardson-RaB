@@ -28,11 +28,11 @@ public class CameraController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.RightArrow))        // Manual camera
+        /*if (Input.GetKey(KeyCode.RightArrow))        // Manual camera
         {
             transform.Translate(Vector3.right * 10f * Time.deltaTime);
             //offset = transform.position - player.transform.position;
-        }
+        } --- Disabled, but was going to be keyboard cam controls */
 
 
         
