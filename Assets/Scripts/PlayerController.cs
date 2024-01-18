@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public Rigidbody rb;
 
+    [SerializeField] private bool _isJumping;
+    [SerializeField] private float _startJumpTime;
+    [SerializeField] private float _airJumpTime;
+    [SerializeField] private float _maxJumpTime;
+    [SerializeField] private float _jumpAcceleration;
+
+
+
     //These private variables are initialized in the Start
     private int count;
     private bool gameOver; //  bool to define game state on or off.
@@ -26,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 cForceDir;
     private bool speedy;
     private Vector3 cForceAmount;
+    private float drag; 
 
     // Audio
     public AudioClip coinSFX;
@@ -41,6 +50,7 @@ public class PlayerController : MonoBehaviour
         startingTime = Time.time;
         gameOver = false;
         cForceAmount = new Vector3(0, -10, 0);
+        drag = 2f; 
 
         audioSource = GetComponent<AudioSource>();  // access the audio source component of player
         // New stuff below: 
@@ -64,18 +74,39 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))        // Jump code
         {
             if (IsGrounded())
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            {
+                rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+                _isJumping = true;
+                _startJumpTime = Time.time;
+                _maxJumpTime = .25f;            //_startJumpTime + _airJumpTime;
+            } 
         }
         
+
+
+
+
+
         if (!IsGrounded())                          // Adds extra gravity when in the air
         {
             cForceDir = cForceAmount;
             cForce.force = cForceDir;
+            rb.drag = 1f;
+            if (speedy)
+            {
+                speed = 30f;
+            }
         }
         else
         {
             cForceDir = new Vector3(0, 0, 0);
             cForce.force = cForceDir;
+            rb.drag = drag;
+            if (speedy)
+            {
+                speed = 14*7.5f;
+            }
+            _isJumping = false;
         }
 
     }
@@ -96,10 +127,14 @@ public class PlayerController : MonoBehaviour
         //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
 
-        
+
         //rb.AddTorque(Vector3.up * moveHorizontal * torqueStrength);
 
-
+        if (Input.GetKey(KeyCode.Space) && _isJumping && (_startJumpTime + _maxJumpTime > Time.time))
+        {
+            rb.AddForce(Vector3.up * _jumpAcceleration, ForceMode.Acceleration);
+            Debug.Log("WorkWork");
+        }
 
 
     }
@@ -152,11 +187,12 @@ public class PlayerController : MonoBehaviour
         {
             if (!speedy)
             {
-                speed = speed * 7.5f;
-                rb.drag = 5f;
+                speed = 105f;
+                drag = 4f;
+                rb.drag = 4f;
                 //rb.mass = .5f;
-                jumpForce = jumpForce * 2.8f;
-                cForceAmount = new Vector3(0,-50,0);
+                //jumpForce = jumpForce * 2.8f;
+                //cForceAmount = new Vector3(0,-50,0);
             }
             speedy = true;
         }

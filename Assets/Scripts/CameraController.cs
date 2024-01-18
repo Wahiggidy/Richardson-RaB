@@ -6,7 +6,9 @@ public class CameraController : MonoBehaviour {
 
     public GameObject player;
 	public Transform playerT;
+	public float manSpeed = 5f;
     private Transform playerTransform = null;
+	
 
 
     [Range(1, 10)]
@@ -20,6 +22,21 @@ public class CameraController : MonoBehaviour {
         //offset = transform.position - player.transform.position;
 		playerTransform = player.transform;
 	}
+
+	void Update () 
+	{
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.RightArrow))        // Manual camera
+        {
+            transform.Translate(Vector3.right * 10f * Time.deltaTime);
+            //offset = transform.position - player.transform.position;
+        }
+
+
+        
+    }
 	
 	
 	void FixedUpdate ()
