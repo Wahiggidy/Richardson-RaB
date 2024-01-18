@@ -10,6 +10,9 @@ TagManager:
   - Grow
   - Door
   - Jump
+  - JumpPowah
+  - SpeedPowah
+  - InvinciblePowah
   layers:
   - Default
   - TransparentFX

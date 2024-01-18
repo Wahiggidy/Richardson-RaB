@@ -16,11 +16,16 @@ public class PlayerController : MonoBehaviour
     public float startingTime;  // variable to hold the game's starting time
     public string min;
     public string sec;
+    public float jumpForce;
+    public Rigidbody rb;
 
     //These private variables are initialized in the Start
-    private Rigidbody rb;
     private int count;
     private bool gameOver; //  bool to define game state on or off.
+    private ConstantForce cForce;
+    private Vector3 cForceDir;
+    private bool speedy;
+    private Vector3 cForceAmount;
 
     // Audio
     public AudioClip coinSFX;
@@ -35,8 +40,14 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         startingTime = Time.time;
         gameOver = false;
+        cForceAmount = new Vector3(0, -10, 0);
 
         audioSource = GetComponent<AudioSource>();  // access the audio source component of player
+        // New stuff below: 
+        cForce = GetComponent <ConstantForce>();
+        rb.maxAngularVelocity = Mathf.Infinity;
+
+
 
     }
     private void Update()
@@ -46,17 +57,56 @@ public class PlayerController : MonoBehaviour
         float timer = Time.time - startingTime;     // local variable to updated time
         min = ((int)timer / 60).ToString();     // calculates minutes
         sec = (timer % 60).ToString("f0");      // calculates seconds
+       
 
         timeText.text = "Elapsed Time: " + min + ":" + sec;     // update UI time text
+        // New stuff below here: 
+        if (Input.GetKeyDown(KeyCode.Space))        // Jump code
+        {
+            if (IsGrounded())
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        }
+        
+        if (!IsGrounded())                          // Adds extra gravity when in the air
+        {
+            cForceDir = cForceAmount;
+            cForce.force = cForceDir;
+        }
+        else
+        {
+            cForceDir = new Vector3(0, 0, 0);
+            cForce.force = cForceDir;
+        }
+
     }
 
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+        //float torqueStrength = 100f;
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        //// Code for getting cam transform
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
+
+        Vector3 movement = (camRight * moveHorizontal + camForward * moveVertical).normalized; // Changes movement input based on camera.. 
+
+        movement = new Vector3(movement.x, 0f, movement.z);
+        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
+
+        
+        //rb.AddTorque(Vector3.up * moveHorizontal * torqueStrength);
+
+
+
+
+    }
+
+    private bool IsGrounded()
+    {
+         return GetComponent<Rigidbody>().velocity.y == 0;
     }
 
 
@@ -83,6 +133,35 @@ public class PlayerController : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Grow"))
+        {
+            if (transform.localScale.x <= 2.0f)
+            {
+                transform.localScale *= 1.25f;    // increase scale by 25%
+            }
+        }
+
+        if (other.gameObject.CompareTag("JumpPowah"))
+        {
+            if (transform.localScale.x <= 2.0f)
+            {
+                transform.localScale *= 1.25f;    // increase scale by 25%
+            }
+        }
+
+        if (other.gameObject.CompareTag("SpeedPowah"))
+        {
+            if (!speedy)
+            {
+                speed = speed * 7.5f;
+                rb.drag = 5f;
+                //rb.mass = .5f;
+                jumpForce = jumpForce * 2.8f;
+                cForceAmount = new Vector3(0,-50,0);
+            }
+            speedy = true;
+        }
+
+        if (other.gameObject.CompareTag("InvinciblePowah"))
         {
             if (transform.localScale.x <= 2.0f)
             {
