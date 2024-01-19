@@ -9,9 +9,11 @@ public class FollowPlayer : MonoBehaviour
     public float speedLerp;
     public Vector2 turn;
     private float sensitivity = 7f;
+    public Rigidbody rb;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        rb = player.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,8 +34,15 @@ public class FollowPlayer : MonoBehaviour
         Rigidbody rb = player.GetComponent<Rigidbody>();
         Vector3 speed = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
 
-        
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(speed), step);        // Makes the camera a bit smoother 
+        if (Mathf.Abs(rb.velocity.x) < .2 && Mathf.Abs(rb.velocity.z) < .2)
+        {
+
+        }
+        else
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(speed), step);        // Makes the camera a bit smoother
+        }
+         
         //transform.rotation = Quaternion.LookRotation(speed);
         
 
