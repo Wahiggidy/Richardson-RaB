@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public float drag;             // This variable is used to reset the drag upon landing, allowing for less ridiculous air speeds as opposed to ground speed 
     public float airDrag;
+    public UIController ui;
+    public GameObject cam; 
 
     [SerializeField] private bool _isJumping;
     [SerializeField] private bool airJumping;
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moddedDash;
     public float maxSpeed;              // Public variable for speed clamp
     private bool invincible;
+    private Color color;
+    private Renderer ren; 
 
     private bool hasDashed;
     private bool hasDashedF;
@@ -63,6 +67,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ren = GetComponent<Renderer>();
         count = 0;
         SetCountText();
         winText.text = "";
@@ -96,18 +101,18 @@ public class PlayerController : MonoBehaviour
         sec = (timer % 60).ToString("f0");      // calculates seconds
        
 
-        timeText.text = "Elapsed Time: " + min + ":" + sec;     // update UI time text
+        timeText.text = min + ":" + sec;     // update UI time text
         // New stuff below here: 
         if (Input.GetKeyDown(KeyCode.Space))        // Jump code
         {
-            if (IsGrounded())
+            if (IsGroundedForJump())                               // Normal jump 
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
                 _isJumping = true;
                 _startJumpTime = Time.time;
                 _maxJumpTime = .25f;            //_startJumpTime + _airJumpTime;
             } 
-            if (jumpy && !IsGrounded() && !airJumping)
+            if (jumpy && !IsGrounded() && !airJumping)                  // Jump for when you have the jump power 
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce * 1.5f, rb.velocity.z);
                 airJumping = true;
@@ -299,6 +304,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool IsGroundedForJump()
+    {
+        
+            float raycastDistance = 0.6f;
+            return Physics.Raycast(transform.position, Vector3.down, raycastDistance);
+        
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -322,6 +335,24 @@ public class PlayerController : MonoBehaviour
             
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
+        }
+
+        if (other.gameObject.CompareTag("DamageZone") && !invincible)
+        {
+            ui.health--;
+            invincible = true;
+            Invoke("InvincibleReset", 2f);
+            color = ren.material.color;
+            color.a = .25f;
+            ren.material.color = color;
+            cam.GetComponent<CameraController>().InitiateCoroutine();
+            Debug.Log(ui.health);
+
+            if (ui.health <= 0)
+            {
+                string currentSceneName = SceneManager.GetActiveScene().name;
+                SceneManager.LoadScene(currentSceneName);
+            }
         }
 
         if (other.gameObject.CompareTag("Grow"))
@@ -371,7 +402,7 @@ public class PlayerController : MonoBehaviour
         {
             
             invincible = true;
-            Invoke("InvincibleReset", 5f);
+            Invoke("InvincibleReset", 8f);
 
         }
 
@@ -391,13 +422,16 @@ public class PlayerController : MonoBehaviour
 
     private void InvincibleReset()
     {
+        color.a = 1f;
+        ren.material.color = color;
+
         invincible = false; 
     }
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if(count >= 5)
+        countText.text = count.ToString();
+        if(count >= 10)
         {
             gameOver = true; // returns true value to signal game is over
             timeText.color = Color.green;  // changes timer's color

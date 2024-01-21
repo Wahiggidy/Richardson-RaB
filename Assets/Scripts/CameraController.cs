@@ -8,6 +8,9 @@ public class CameraController : MonoBehaviour {
 	public Transform playerT;
 	public float manSpeed = 5f;
     private Transform playerTransform = null;
+	private float shakeDuration = .25f;
+	public AnimationCurve shake;
+	private Vector3 smoothPos;
 	
 
 
@@ -58,6 +61,8 @@ public class CameraController : MonoBehaviour {
 			clampPos,
 			lerpSpeed * Time.deltaTime);
 			
+
+			
 			transform.position = smoothPos;
 			//Debug.Log(clampPos);
 
@@ -70,5 +75,31 @@ public class CameraController : MonoBehaviour {
 
 		//transform.position = player.transform.position + offset;
 		//transform.LookAt(player.transform.position);
+	}
+
+
+
+	public IEnumerator Shake()
+	{
+		float elapsed = 0f; 
+		Vector3 startPos = transform.position;
+
+		while (elapsed < shakeDuration) 
+		{ 
+			elapsed += Time.deltaTime;
+			float strength = shake.Evaluate(elapsed/shakeDuration);
+			transform.position = startPos + Random.insideUnitSphere * strength * 2;
+			yield return null;
+
+		}
+
+
+
+
+	}
+
+	public void InitiateCoroutine()
+	{
+		StartCoroutine(Shake());
 	}
 }

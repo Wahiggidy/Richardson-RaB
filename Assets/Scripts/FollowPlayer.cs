@@ -34,7 +34,7 @@ public class FollowPlayer : MonoBehaviour
         Rigidbody rb = player.GetComponent<Rigidbody>();
         Vector3 speed = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
 
-        if (Mathf.Abs(rb.velocity.x) < .2 && Mathf.Abs(rb.velocity.z) < .2)
+        if (Mathf.Abs(rb.velocity.x) < .5 && Mathf.Abs(rb.velocity.z) < .5)
         {
 
         }
