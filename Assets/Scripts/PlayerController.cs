@@ -418,6 +418,18 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(new Vector3(0.0f, 300.0f, 0.0f));
         }
+
+        if (other.gameObject.CompareTag("LightUp"))
+        {
+            Renderer otherRenderer = other.gameObject.GetComponent<Renderer>();
+            if (otherRenderer != null)
+            {
+                other.GetComponent<LightUpPlats>().InitiateCoroutine();
+            }
+
+
+        }
+
     }
 
     private void InvincibleReset()

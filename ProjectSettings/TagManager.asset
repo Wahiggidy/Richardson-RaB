@@ -15,6 +15,7 @@ TagManager:
   - InvinciblePowah
   - Security
   - DamageZone
+  - LightUp
   layers:
   - Default
   - TransparentFX
