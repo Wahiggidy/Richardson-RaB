@@ -343,8 +343,13 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = coinSFX;
             audioSource.Play();
 
-            //Play particle system
-
+            //Reset jumps/dashes, also boost slightly
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce * 2, rb.velocity.z);
+            _isJumping = false;
+            hasDashed = false;
+            airJumping = false;
+            hasDashedF = false;
+            finalDash = false;
 
 
         }
