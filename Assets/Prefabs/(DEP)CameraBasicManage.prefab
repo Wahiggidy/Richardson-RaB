@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6054426087105638531}
   m_Layer: 0
-  m_Name: CameraBasicManage
+  m_Name: (DEP)CameraBasicManage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
