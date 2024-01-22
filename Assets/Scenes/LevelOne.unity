@@ -3015,7 +3015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10659,7 +10659,7 @@ MonoBehaviour:
   _maxJumpTime: 0
   _jumpAcceleration: 29
   maxSpeed: 0
-  coinSFX: {fileID: 8300000, guid: ab1859cbda5759844b7c967242766700, type: 3}
+  coinSFX: {fileID: 8300000, guid: ed561b81ca05ed3438a7c35a70f7f83f, type: 3}
 --- !u!54 &939484153
 Rigidbody:
   m_ObjectHideFlags: 0

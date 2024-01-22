@@ -9,7 +9,8 @@ public class StartGame : MonoBehaviour
     public int gameStartScene;
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame

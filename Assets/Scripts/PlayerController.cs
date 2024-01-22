@@ -319,7 +319,23 @@ public class PlayerController : MonoBehaviour
    
         if (other.gameObject.tag == "PickUp")
         {
-            other.gameObject.SetActive(false);
+            //DestroyImmediate(other.transform.parent.gameObject);
+            //other.gameObject.transform.parent.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
+            //count++;
+            //SetCountText();
+
+            //PLAY SOUND EFFECT
+            //audioSource.clip = coinSFX;
+            //audioSource.Play();
+
+        }
+
+        if (other.gameObject.tag == "Security")
+        {
+            Destroy(other.gameObject);
+            //other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
             count++;
             SetCountText();
 
@@ -327,17 +343,21 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = coinSFX;
             audioSource.Play();
 
+            //Play particle system
+
+
+
         }
 
-        if (other.gameObject.CompareTag("DeathZone") && !invincible)
+        if (other.gameObject.CompareTag("DeathZone"))                   // Instant unconditional kill
         {
             
             
             string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            SceneManager.LoadScene(2);
         }
 
-        if (other.gameObject.CompareTag("DamageZone") && !invincible)
+        if (other.gameObject.CompareTag("DamageZone") && !invincible)   // Damages player
         {
             ui.health--;
             invincible = true;
@@ -351,7 +371,7 @@ public class PlayerController : MonoBehaviour
             if (ui.health <= 0)
             {
                 string currentSceneName = SceneManager.GetActiveScene().name;
-                SceneManager.LoadScene(currentSceneName);
+                SceneManager.LoadScene(2);
             }
         }
 
