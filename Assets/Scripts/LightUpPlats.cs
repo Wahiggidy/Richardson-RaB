@@ -16,8 +16,8 @@ public class LightUpPlats : MonoBehaviour
     void Start()
     {
         emissionMaxIntensity = 500000;
-        emissionBaseIntensity = 100f; 
-        duration = .5f;
+        emissionBaseIntensity = 50f; 
+        duration = .4f;
         ren = GetComponent<Renderer>();
         ren.material.EnableKeyword("_EmissionIntensity");
         colorStore = ren.material.GetColor("_EmissiveColor");
