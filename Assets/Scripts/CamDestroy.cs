@@ -24,7 +24,6 @@ public class CamDestroy : MonoBehaviour
         particle.Play();
         ParticleSystem.EmissionModule em = particle.emission;
         em.enabled = true;
-        Debug.Log("This execute");
     }
 
 }
