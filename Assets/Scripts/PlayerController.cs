@@ -307,7 +307,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGroundedForJump()
     {
         
-            float raycastDistance = 0.6f;
+            float raycastDistance = 0.75f;
             return Physics.Raycast(transform.position, Vector3.down, raycastDistance);
         
     }
