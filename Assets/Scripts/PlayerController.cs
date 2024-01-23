@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public TMP_Text winText;
     public TMP_Text timeText;  //  variable to display the timer text in Unity
     public float startingTime;  // variable to hold the game's starting time
-    public string min;
-    public string sec;
+    public int min;
+    public int sec;
     public float jumpForce;
     public Rigidbody rb;
     public float drag;             // This variable is used to reset the drag upon landing, allowing for less ridiculous air speeds as opposed to ground speed 
@@ -108,11 +108,17 @@ public class PlayerController : MonoBehaviour
         if (gameOver) // condition that the game is NOT over; returns the false value
             return;
         float timer = Time.time - startingTime;     // local variable to updated time
-        min = ((int)timer / 60).ToString();     // calculates minutes
-        sec = (timer % 60).ToString("f0");      // calculates seconds
-       
+        min = ((int)timer / 60);//.ToString();     // calculates minutes
+        sec = ((int)timer % 60);//.ToString("f0");      // calculates seconds
 
-        timeText.text = min + ":" + sec;     // update UI time text
+        string formattedTime = string.Format("{0:D2}:{1:D2}", min, sec);
+        timeText.text = formattedTime;
+        //min = minutes.ToString();
+        //sec = seconds.ToString();
+
+
+
+        //timeText.text = min + ":" + sec;     // update UI time text
         // New stuff below here: 
         if (Input.GetKeyDown(KeyCode.Space))        // Jump code
         {

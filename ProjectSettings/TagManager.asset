@@ -17,6 +17,7 @@ TagManager:
   - DamageZone
   - LightUp
   - LifeUp
+  - Exit
   layers:
   - Default
   - TransparentFX
