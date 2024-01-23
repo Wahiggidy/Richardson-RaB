@@ -371,7 +371,7 @@ public class PlayerController : MonoBehaviour
             color.a = .25f;
             ren.material.color = color;
             cam.GetComponent<CameraController>().InitiateCoroutine();
-            Debug.Log(ui.health);
+
 
             if (ui.health <= 0)
             {
