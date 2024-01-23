@@ -514,13 +514,13 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = count.ToString();
+        /*countText.text = count.ToString();
         if(count >= 10)
         {
             gameOver = true; // returns true value to signal game is over
             timeText.color = Color.green;  // changes timer's color
             winText.text = "You win!";
             speed = 0;
-        }
+        }*/
     }
 }
