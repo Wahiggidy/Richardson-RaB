@@ -350,7 +350,10 @@ public class PlayerController : MonoBehaviour
             //audioSource.Play();
 
         }
-
+        if (other.gameObject.tag == "Exit" && count >=10)
+        {
+            SceneManager.LoadScene(3);
+        }
         if (other.gameObject.tag == "Security")
         {
             Destroy(other.gameObject);
@@ -378,6 +381,7 @@ public class PlayerController : MonoBehaviour
 
                  
             }
+            
 
 
         }
