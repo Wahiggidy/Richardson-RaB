@@ -63115,8 +63115,8 @@ MonoBehaviour:
   winText: {fileID: 1911871620}
   timeText: {fileID: 1768535932}
   startingTime: 0
-  min: 
-  sec: 
+  min: 0
+  sec: 0
   jumpForce: 7.5
   rb: {fileID: 0}
   drag: 2
@@ -100595,7 +100595,7 @@ GameObject:
   - component: {fileID: 1586546331}
   m_Layer: 0
   m_Name: Plane (203)
-  m_TagString: Finish
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
