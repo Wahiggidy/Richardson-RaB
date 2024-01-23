@@ -8,6 +8,14 @@ public class MovementStuff : MonoBehaviour
     public float panSpeed;
     public float circleRadius;
     private Vector3 initPosition;
+
+    public bool circle;
+    public bool vertical;
+    public float pauseDur;
+    public bool forward;
+    public float panDur;
+
+    private float pauseTime; 
     void Start()
     {
         initPosition = transform.position;
@@ -16,9 +24,39 @@ public class MovementStuff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float angle = Time.time * panSpeed;
-        float x = Mathf.Cos(angle) * circleRadius;
-        float z = Mathf.Sin(angle) * circleRadius;
-        transform.position = new Vector3(x + initPosition.x, transform.position.y, z + initPosition.z);
+        if (circle)
+        {
+            float angle = Time.time * panSpeed;
+            float x = Mathf.Cos(angle) * circleRadius;
+            float z = Mathf.Sin(angle) * circleRadius;
+            transform.position = new Vector3(x + initPosition.x, transform.position.y, z + initPosition.z);
+        }
+
+        if (vertical)
+        {
+
+            if (Time.time < pauseTime)
+            {
+                if (forward)
+                {
+                    Vector3 pos = transform.position;
+                    pos += new Vector3 (panSpeed * Time.deltaTime, 0, 0);
+                    transform.position = pos;
+                }
+                else
+                {
+                    Vector3 pos = transform.position;
+                    pos += new Vector3(-panSpeed * Time.deltaTime, 0, 0);
+                    transform.position = pos;
+                }
+
+            }
+
+            if (Time.time > pauseTime + pauseDur)
+            {
+                forward = !forward;
+                pauseTime = Time.time + panDur;
+            }
+        } 
     }
 }

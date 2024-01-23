@@ -20,10 +20,13 @@ public class CamDestroy : MonoBehaviour
 
     private void OnDestroy()
     {
-        var particle = explosion.GetComponent<ParticleSystem>();
-        particle.Play();
-        ParticleSystem.EmissionModule em = particle.emission;
-        em.enabled = true;
+        if (explosion != null)
+        {
+            var particle = explosion.GetComponent<ParticleSystem>();
+            particle.Play();
+            ParticleSystem.EmissionModule em = particle.emission;
+            em.enabled = true;
+        }
     }
 
 }
