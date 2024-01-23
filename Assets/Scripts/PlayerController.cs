@@ -21,7 +21,11 @@ public class PlayerController : MonoBehaviour
     public float drag;             // This variable is used to reset the drag upon landing, allowing for less ridiculous air speeds as opposed to ground speed 
     public float airDrag;
     public UIController ui;
-    public GameObject cam; 
+    public GameObject cam;
+    public GameObject doorLeft;
+    public GameObject doorRight;
+    public int amountOfCamNeeded;
+    
 
     [SerializeField] private bool _isJumping;
     [SerializeField] private bool airJumping;
@@ -53,7 +57,11 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed;              // Public variable for speed clamp
     private bool invincible;
     private Color color;
-    private Renderer ren; 
+    private Renderer ren;
+    private bool doorTrig;
+    private Vector3 leftDoorPos;
+    private Vector3 rightDoorPos;
+    private float elapsedTime;
 
     private bool hasDashed;
     private bool hasDashedF;
@@ -81,7 +89,10 @@ public class PlayerController : MonoBehaviour
         ffForce = 30f;
         maxBounceSpeed = 20f;
         dashForce = 20f;
-       // maxSpeed = 40f;
+        leftDoorPos = doorLeft.transform.position;
+        rightDoorPos = doorRight.transform.position;
+        elapsedTime = 0;
+        // maxSpeed = 40f;
         //drag = 2f; 
 
         audioSource = GetComponent<AudioSource>();  // access the audio source component of player
@@ -198,6 +209,15 @@ public class PlayerController : MonoBehaviour
             airJumping = false;
             hasDashedF = false;
             finalDash = false; 
+        }
+
+        if (doorTrig && elapsedTime < 3)
+            
+        {
+            float alpha = Mathf.Clamp01(elapsedTime / 3);
+            doorLeft.transform.position = Vector3.Lerp(leftDoorPos, leftDoorPos + new Vector3(0, 0, 2.5f), alpha);
+            doorRight.transform.position = Vector3.Lerp(rightDoorPos, rightDoorPos + new Vector3(0, 0, -2.5f), alpha);
+            elapsedTime += Time.deltaTime; 
         }
 
     }
@@ -351,6 +371,14 @@ public class PlayerController : MonoBehaviour
             hasDashedF = false;
             finalDash = false;
 
+            if (count > amountOfCamNeeded)
+            {
+                MoveDoor();
+                doorTrig = true;
+
+                 
+            }
+
 
         }
 
@@ -456,6 +484,14 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void MoveDoor()
+    {
+        float elapsedTime;
+
+
+    }
+    
 
     private void InvincibleReset()
     {
