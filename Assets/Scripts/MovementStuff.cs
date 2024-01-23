@@ -11,6 +11,7 @@ public class MovementStuff : MonoBehaviour
 
     public bool circle;
     public bool vertical;
+    public bool horizontal;
     public float pauseDur;
     public bool forward;
     public float panDur;
@@ -57,6 +58,33 @@ public class MovementStuff : MonoBehaviour
                 forward = !forward;
                 pauseTime = Time.time + panDur;
             }
-        } 
+        }
+
+        if (horizontal)
+        {
+
+            if (Time.time < pauseTime)
+            {
+                if (forward)
+                {
+                    Vector3 pos = transform.position;
+                    pos += new Vector3(0,0,panSpeed * Time.deltaTime);
+                    transform.position = pos;
+                }
+                else
+                {
+                    Vector3 pos = transform.position;
+                    pos += new Vector3(0, 0, -panSpeed * Time.deltaTime);
+                    transform.position = pos;
+                }
+
+            }
+
+            if (Time.time > pauseTime + pauseDur)
+            {
+                forward = !forward;
+                pauseTime = Time.time + panDur;
+            }
+        }
     }
 }
