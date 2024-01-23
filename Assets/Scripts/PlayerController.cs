@@ -404,7 +404,7 @@ public class PlayerController : MonoBehaviour
             
             
             string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(currentSceneName);
         }
 
         if (other.gameObject.CompareTag("DamageZone") && !invincible)   // Damages player
