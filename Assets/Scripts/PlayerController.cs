@@ -215,8 +215,8 @@ public class PlayerController : MonoBehaviour
             
         {
             float alpha = Mathf.Clamp01(elapsedTime / 3);
-            doorLeft.transform.position = Vector3.Lerp(leftDoorPos, leftDoorPos + new Vector3(0, 0, 2.5f), alpha);
-            doorRight.transform.position = Vector3.Lerp(rightDoorPos, rightDoorPos + new Vector3(0, 0, -2.5f), alpha);
+            doorLeft.transform.position = Vector3.Lerp(leftDoorPos, leftDoorPos + new Vector3(2.5f, 0, 0), alpha);
+            doorRight.transform.position = Vector3.Lerp(rightDoorPos, rightDoorPos + new Vector3(-2.5f, 0, 0), alpha);
             elapsedTime += Time.deltaTime; 
         }
 
