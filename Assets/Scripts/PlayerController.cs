@@ -374,7 +374,7 @@ public class PlayerController : MonoBehaviour
             hasDashedF = false;
             finalDash = false;
 
-            if (count > amountOfCamNeeded)
+            if (count >= amountOfCamNeeded)
             {
                 MoveDoor();
                 doorTrig = true;
