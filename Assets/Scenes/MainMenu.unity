@@ -572,8 +572,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 657905768}
-        m_TargetAssemblyTypeName: HelpButton, Assembly-CSharp
-        m_MethodName: HelpClick
+        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
+        m_MethodName: LoadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -630,9 +630,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 657905763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13aeefb843b58514e90412a8341e057b, type: 3}
+  m_Script: {fileID: 11500000, guid: d9ed4a66015c8734693bded1cf048a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStartScene: 4
 --- !u!1 &914357881
 GameObject:
   m_ObjectHideFlags: 0
