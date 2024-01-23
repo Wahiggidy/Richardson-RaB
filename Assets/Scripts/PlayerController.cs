@@ -363,7 +363,7 @@ public class PlayerController : MonoBehaviour
             //audioSource.Play();
 
         }
-        if (other.gameObject.tag == "Exit" && count >=10)
+        if (other.gameObject.tag == "Exit" && count >=0)
         {
             SceneManager.LoadScene(3);
         }
