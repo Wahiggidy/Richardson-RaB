@@ -16,6 +16,7 @@ TagManager:
   - Security
   - DamageZone
   - LightUp
+  - LifeUp
   layers:
   - Default
   - TransparentFX

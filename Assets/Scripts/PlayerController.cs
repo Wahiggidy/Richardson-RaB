@@ -336,6 +336,13 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //This event/function handles trigger events (collsion between a game object with a rigid body)
+
+
+        if (other.gameObject.tag == "LifeUp" && ui.health < 4)
+        {
+            ui.health++;
+            Destroy(other.gameObject);
+        }
    
         if (other.gameObject.tag == "PickUp")
         {
