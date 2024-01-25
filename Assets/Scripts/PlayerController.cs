@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public GameObject doorLeft;
     public GameObject doorRight;
     public int amountOfCamNeeded;
+    public float sceneToLoad;
     
 
     [SerializeField] private bool _isJumping;
