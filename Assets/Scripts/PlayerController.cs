@@ -418,6 +418,7 @@ public class PlayerController : MonoBehaviour
                 doorTrig = true;
                 audioSource3.clip = elevatorSFX;
                 audioSource3.Play();
+                Debug.Log(count);
 
 
             }

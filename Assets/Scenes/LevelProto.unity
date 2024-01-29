@@ -35073,7 +35073,7 @@ MonoBehaviour:
   cam: {fileID: 2132230646}
   doorLeft: {fileID: 1184714736}
   doorRight: {fileID: 239754722}
-  amountOfCamNeeded: 9
+  amountOfCamNeeded: 900
   sceneToLoad: 0
   _isJumping: 0
   airJumping: 0
