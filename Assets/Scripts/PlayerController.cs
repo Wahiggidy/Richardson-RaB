@@ -372,6 +372,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "LifeUp" && ui.health < 4)
         {
             ui.health++;
+            audioSource.clip = energySFX;
+            audioSource.Play();
             Destroy(other.gameObject);
         }
    
