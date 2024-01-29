@@ -72,8 +72,15 @@ public class PlayerController : MonoBehaviour
     // Audio
     public AudioClip coinSFX;
     public AudioClip bassDrumSFX; 
+    public AudioClip jumpPowerSFX;
+    public AudioClip speedPowerSFX;
+    public AudioClip invincibleSFX;
+    public AudioClip alarmSFX;
+    public AudioClip energySFX;
+    public AudioClip elevatorSFX;
     public AudioSource audioSource;
     public AudioSource audioSource2;
+    public AudioSource audioSource3;
 
 
     void Start()
@@ -409,8 +416,10 @@ public class PlayerController : MonoBehaviour
             {
                 MoveDoor();
                 doorTrig = true;
+                audioSource3.clip = elevatorSFX;
+                audioSource3.Play();
 
-                 
+
             }
             
 
@@ -428,6 +437,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("DamageZone") && !invincible)   // Damages player
         {
             ui.health--;
+            audioSource.clip = alarmSFX;
+            audioSource.Play();
             invincible = true;
             Invoke("InvincibleReset", 2f);
             color = ren.material.color;
@@ -467,6 +478,8 @@ public class PlayerController : MonoBehaviour
                 vertiMultiplier = 15f;
                 dampening = .85f;
                 cForceAmount = new Vector3(0,-25,0);
+                audioSource.clip = jumpPowerSFX;
+                audioSource.Play();
                 Destroy(other.gameObject);
 
             }
@@ -480,6 +493,8 @@ public class PlayerController : MonoBehaviour
                 speed = 105f;
                 drag = 4f;
                 rb.drag = 4f;
+                audioSource.clip = speedPowerSFX;
+                audioSource.Play();
                 //rb.mass = .5f;
                 //jumpForce = jumpForce * 2.8f;
                 //cForceAmount = new Vector3(0,-50,0);
@@ -491,6 +506,8 @@ public class PlayerController : MonoBehaviour
         {
             
             invincible = true;
+            audioSource.clip = invincibleSFX;
+            audioSource.Play();
             Invoke("InvincibleReset", 8f);
 
         }

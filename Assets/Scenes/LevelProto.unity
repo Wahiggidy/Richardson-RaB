@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1181.548, g: 899.4796, b: 592.9545, a: 1}
+  m_IndirectSpecularColor: {r: 1181.5951, g: 899.47144, b: 592.9483, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35038,6 +35038,7 @@ GameObject:
   - component: {fileID: 1994447363}
   - component: {fileID: 1994447364}
   - component: {fileID: 1994447365}
+  - component: {fileID: 1994447366}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -35072,7 +35073,7 @@ MonoBehaviour:
   cam: {fileID: 2132230646}
   doorLeft: {fileID: 1184714736}
   doorRight: {fileID: 239754722}
-  amountOfCamNeeded: 1
+  amountOfCamNeeded: 9
   sceneToLoad: 0
   _isJumping: 0
   airJumping: 0
@@ -35081,10 +35082,17 @@ MonoBehaviour:
   _maxJumpTime: 0
   _jumpAcceleration: 29
   maxSpeed: 0
-  coinSFX: {fileID: 8300000, guid: ed561b81ca05ed3438a7c35a70f7f83f, type: 3}
+  coinSFX: {fileID: 8300000, guid: 368828474afed2b499aaefb794ef4f5b, type: 3}
   bassDrumSFX: {fileID: 8300000, guid: 38688139d9a466f458438da740cc2eaa, type: 3}
+  jumpPowerSFX: {fileID: 8300000, guid: 1ed6d9e6d3450cf4f9b46cd519579e6b, type: 3}
+  speedPowerSFX: {fileID: 8300000, guid: c2fdbfd0a4626ac4e82f1ae0f5f3f8f7, type: 3}
+  invincibleSFX: {fileID: 0}
+  alarmSFX: {fileID: 8300000, guid: 29c204a27e968c243b4f13309f2ae76b, type: 3}
+  energySFX: {fileID: 8300000, guid: 5e1031c89de34ae4c9e2984ba07cf569, type: 3}
+  elevatorSFX: {fileID: 8300000, guid: 9d26149185772e147bc42ab2b77db87e, type: 3}
   audioSource: {fileID: 1994447363}
   audioSource2: {fileID: 1994447365}
+  audioSource3: {fileID: 1994447366}
 --- !u!54 &1994447358
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35393,6 +35401,102 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1994447366
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994447356}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.803
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 23
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
