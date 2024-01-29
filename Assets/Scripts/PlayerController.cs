@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 rightDoorPos;
     private float elapsedTime;
     private bool bassDrumPlayed;
+    
 
     private bool hasDashed;
     private bool hasDashedF;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip alarmSFX;
     public AudioClip energySFX;
     public AudioClip elevatorSFX;
+    public AudioClip electricSFX;
     public AudioSource audioSource;
     public AudioSource audioSource2;
     public AudioSource audioSource3;
@@ -434,10 +436,12 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("DeathZone"))                   // Instant unconditional kill
         {
-            
-            
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            audioSource.clip = electricSFX;
+            audioSource.Play();
+            Invoke("Kill", .5f);
+            speed = 0;
+            //string currentSceneName = SceneManager.GetActiveScene().name;
+            //SceneManager.LoadScene(currentSceneName);
         }
 
         if (other.gameObject.CompareTag("DamageZone") && !invincible)   // Damages player
@@ -542,6 +546,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+    private void Kill()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 
     private void MoveDoor()
