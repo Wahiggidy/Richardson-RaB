@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 leftDoorPos;
     private Vector3 rightDoorPos;
     private float elapsedTime;
+    private bool bassDrumPlayed;
 
     private bool hasDashed;
     private bool hasDashedF;
@@ -70,7 +71,9 @@ public class PlayerController : MonoBehaviour
 
     // Audio
     public AudioClip coinSFX;
-    private AudioSource audioSource;
+    public AudioClip bassDrumSFX; 
+    public AudioSource audioSource;
+    public AudioSource audioSource2;
 
 
     void Start()
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
         // maxSpeed = 40f;
         //drag = 2f; 
 
-        audioSource = GetComponent<AudioSource>();  // access the audio source component of player
+        //audioSource = GetComponent<AudioSource>();  // access the audio source component of player
         // New stuff below: 
         cForce = GetComponent <ConstantForce>();
         rb.maxAngularVelocity = Mathf.Infinity;
@@ -197,6 +200,7 @@ public class PlayerController : MonoBehaviour
             cForceDir = cForceAmount;
             cForce.force = cForceDir;
             rb.drag = airDrag;
+            bassDrumPlayed = false;
             if (speedy)
             {
                 speed = 30f;
@@ -216,6 +220,14 @@ public class PlayerController : MonoBehaviour
             airJumping = false;
             hasDashedF = false;
             finalDash = false; 
+            if (jumpy && !bassDrumPlayed)
+            {
+                bassDrumPlayed = true;
+                audioSource2.clip = bassDrumSFX;
+                audioSource2.Play();
+                Debug.Log("Thisworkingsound");
+                //Invoke("ResetBassDrum", .1f);
+            }
         }
 
         if (doorTrig && elapsedTime < 3)
@@ -227,6 +239,11 @@ public class PlayerController : MonoBehaviour
             elapsedTime += Time.deltaTime; 
         }
 
+    }
+
+    private void ResetBassDrum()
+    {
+        bassDrumPlayed = false; 
     }
 
     private void DampenVelocity(float dampen)
@@ -450,6 +467,7 @@ public class PlayerController : MonoBehaviour
                 vertiMultiplier = 15f;
                 dampening = .85f;
                 cForceAmount = new Vector3(0,-25,0);
+                Destroy(other.gameObject);
 
             }
             jumpy = true;
