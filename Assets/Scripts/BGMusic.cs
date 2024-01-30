@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BGMusic : MonoBehaviour
@@ -15,7 +16,12 @@ public class BGMusic : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        if (!instance.GetComponent<AudioSource>().isPlaying)
+        {
+            instance.GetComponent<AudioSource>().Play();
+        }
     }
+        
 
 
 }

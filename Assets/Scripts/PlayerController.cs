@@ -405,8 +405,12 @@ public class PlayerController : MonoBehaviour
             SetCountText();
 
             //PLAY SOUND EFFECT
-            audioSource.clip = coinSFX;
-            audioSource.Play();
+            if (count != 900)
+            {
+                audioSource.clip = coinSFX;
+                audioSource.Play();
+            }
+            
 
             //Reset jumps/dashes, also boost slightly
             rb.velocity = new Vector3(rb.velocity.x, jumpForce * 2, rb.velocity.z);
@@ -439,6 +443,7 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = electricSFX;
             audioSource.Play();
             Invoke("Kill", .5f);
+            rb.velocity = new Vector3(0,0,0);
             speed = 0;
             //string currentSceneName = SceneManager.GetActiveScene().name;
             //SceneManager.LoadScene(currentSceneName);

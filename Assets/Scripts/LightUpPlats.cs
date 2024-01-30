@@ -11,6 +11,7 @@ public class LightUpPlats : MonoBehaviour
     private float duration;
     private Renderer ren;
     private Color colorStore;
+    public bool disappear;
 
     public AnimationCurve intensity;
     void Start()
