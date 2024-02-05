@@ -402,7 +402,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             //other.gameObject.SetActive(false);
             //other.gameObject.SetActive(false);
-            count+=1000;
+            count+=100; 
             SetCountText();
 
             //PLAY SOUND EFFECT
