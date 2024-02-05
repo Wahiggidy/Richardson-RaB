@@ -424,7 +424,7 @@ public class PlayerController : MonoBehaviour
             {
                 MoveDoor();
                 doorTrig = true;
-                if (!doorTrig)
+                if (doorTrig)
                 {
                     audioSource.clip = elevatorSFX;
                     audioSource.Play();
