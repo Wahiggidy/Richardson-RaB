@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public int sceneIndex;
-    public Animator transition;
+    public Animation transition;
     void Start()
     {
-        
+        //transition = GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -20,12 +20,13 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        
         StartCoroutine(LoadLevel(sceneIndex));
     }
 
     IEnumerator LoadLevel(int index)
     {
-        transition.SetTrigger("Start");
+        transition.Play("Crossfade -- start");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneIndex);
     }

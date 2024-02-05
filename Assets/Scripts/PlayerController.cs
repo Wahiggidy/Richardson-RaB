@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float drag;             // This variable is used to reset the drag upon landing, allowing for less ridiculous air speeds as opposed to ground speed 
     public float airDrag;
     public UIController ui;
+    public LevelLoader levelLoader;
     public GameObject cam;
     public GameObject doorLeft;
     public GameObject doorRight;
@@ -394,14 +395,14 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "Exit" && count >=1000)
         {
-            SceneManager.LoadScene(3);
+            levelLoader.LoadNextLevel();
         }
         if (other.gameObject.tag == "Security")
         {
             Destroy(other.gameObject);
             //other.gameObject.SetActive(false);
             //other.gameObject.SetActive(false);
-            count+=100;
+            count+=1000;
             SetCountText();
 
             //PLAY SOUND EFFECT
