@@ -441,10 +441,10 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("DeathZone"))                   // Instant unconditional kill
         {
-            audioSource.clip = electricSFX;
-            audioSource.Play();
+            //audioSource.clip = electricSFX;
+            //audioSource.Play();
             Invoke("Kill", .5f);
-            rb.velocity = new Vector3(0,0,0);
+            //rb.velocity = new Vector3(0,0,0);
             speed = 0;
             //string currentSceneName = SceneManager.GetActiveScene().name;
             //SceneManager.LoadScene(currentSceneName);
