@@ -405,7 +405,7 @@ public class PlayerController : MonoBehaviour
             SetCountText();
 
             //PLAY SOUND EFFECT
-            if (count != 900)
+            if (count != amountOfCamNeeded)
             {
                 audioSource.clip = coinSFX;
                 audioSource.Play();
@@ -510,6 +510,7 @@ public class PlayerController : MonoBehaviour
                 rb.drag = 4f;
                 audioSource.clip = speedPowerSFX;
                 audioSource.Play();
+                Destroy(other.gameObject);
                 //rb.mass = .5f;
                 //jumpForce = jumpForce * 2.8f;
                 //cForceAmount = new Vector3(0,-50,0);
