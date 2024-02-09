@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    //These private variables are initialized in the Start
+    //These private variables are initialized in the Start or somewhere else
     private int count;
     private bool gameOver; //  bool to define game state on or off.
     private ConstantForce cForce;
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpy;
     private Vector3 cForceAmount;
     private Collider coll;
+    private TrailRenderer tr;
     private float airRes;           // Air resistance for the jump power
     private float horiMultiplier;
     private float vertiMultiplier;
@@ -421,7 +422,7 @@ public class PlayerController : MonoBehaviour
             hasDashedF = false;
             finalDash = false;
 
-            if (count >= amountOfCamNeeded)
+            if (count == amountOfCamNeeded)
             {
                 MoveDoor();
                 doorTrig = true;
@@ -483,7 +484,7 @@ public class PlayerController : MonoBehaviour
             if (!jumpy)
             {
                 coll = GetComponent<SphereCollider>();
-                coll.material.bounciness = .965f;
+                coll.material.bounciness = 1f; // previous .965f
                 coll.material.staticFriction = 0f;
                 coll.material.dynamicFriction = 0f;
                 airDrag = 0f;
@@ -506,6 +507,8 @@ public class PlayerController : MonoBehaviour
         {
             if (!speedy)
             {
+                tr = GetComponent<TrailRenderer>();
+                tr.enabled = true;
                 speed = 105f;
                 drag = 4f;
                 rb.drag = 4f;
