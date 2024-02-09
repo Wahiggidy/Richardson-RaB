@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 rightDoorPos;
     private float elapsedTime;
     private bool bassDrumPlayed;
+    private Vector3 initialLoc;
     
 
     private bool hasDashed;
@@ -109,6 +110,8 @@ public class PlayerController : MonoBehaviour
         leftDoorPos = doorLeft.transform.position;
         rightDoorPos = doorRight.transform.position;
         elapsedTime = 0;
+        initialLoc = transform.position;
+
         // maxSpeed = 40f;
         //drag = 2f; 
 
@@ -424,6 +427,7 @@ public class PlayerController : MonoBehaviour
                 TimeManager.instance.levelTwoTime = timeText.text;
                 TimeManager.instance.levelTwoMin = min;
                 TimeManager.instance.levelTwoSec = sec;
+                TimeManager.instance.readyForTotal = true;
             }
             
         }
@@ -476,9 +480,10 @@ public class PlayerController : MonoBehaviour
             Invoke("Kill", .5f);
             cam.GetComponent<CameraController>().freeze = true;
             //rb.velocity = new Vector3(0,0,0);
-            speed = 0;
+            //speed = 0;
             //string currentSceneName = SceneManager.GetActiveScene().name;
             //SceneManager.LoadScene(currentSceneName);
+            
         }
 
         if (other.gameObject.CompareTag("DamageZone") && !invincible)   // Damages player
@@ -590,8 +595,20 @@ public class PlayerController : MonoBehaviour
     }
     private void Kill()
     {
+
+        cam.GetComponent<CameraController>().freeze = false;
+        ui.health--;
+        if (ui.health <= 0)
+        {
+            //string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(2);
+        }
+        rb.velocity = Vector3.zero;
+        transform.position = initialLoc;
+       /* 
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+       */
     }
 
     private void MoveDoor()

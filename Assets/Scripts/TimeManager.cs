@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class TimeManager : MonoBehaviour
     public float levelTwoMin;
     public float levelOneSec;
     public float levelTwoSec;
-    public string totalTime; 
+    public string totalTime;
+    public bool readyForTotal;
 
     void Awake()
     {
@@ -22,8 +24,13 @@ public class TimeManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);
+        if (readyForTotal)
+        {
+            totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);
+        }
+        
     }
 
 
