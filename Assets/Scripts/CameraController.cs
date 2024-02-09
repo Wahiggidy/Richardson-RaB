@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour {
 	private float shakeDuration = .25f;
 	public AnimationCurve shake;
 	private Vector3 smoothPos;
+	public bool freeze;
 	
 
 
@@ -60,17 +61,19 @@ public class CameraController : MonoBehaviour {
 			transform.position,
 			clampPos,
 			lerpSpeed * Time.deltaTime);
-			
 
-			
+
+		if (!freeze)
+		{
 			transform.position = smoothPos;
-			//Debug.Log(clampPos);
+            transform.LookAt(playerTransform);
+            //Debug.Log(clampPos);
+        }
 
 
 
 
-
-		transform.LookAt(playerTransform);
+		
 
 
 		//transform.position = player.transform.position + offset;

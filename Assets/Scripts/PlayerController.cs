@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public GameObject cam;
     public GameObject doorLeft;
     public GameObject doorRight;
+    public ParticleSystem redPart;
+    public ParticleSystem bluePart; 
     public int amountOfCamNeeded;
     public float sceneToLoad;
     
@@ -160,6 +162,7 @@ public class PlayerController : MonoBehaviour
             
             rb.AddForce(Vector3.down * ffForce, ForceMode.VelocityChange);
             DampenVelocity(.5f);
+            redPart.Play();
             if (hasDashedF && !finalDash)
             {
                 hasDashed = false;
@@ -184,6 +187,8 @@ public class PlayerController : MonoBehaviour
                 moddedDash = new Vector3(moddedDash.x, -5f, moddedDash.z) * 1.5f;
             }
             rb.AddForce(moddedDash * dashForce, ForceMode.VelocityChange);
+            bluePart.Play();
+            Invoke("ResetParticle1", .35f);
             hasDashed = true;
         }
         if (Input.GetKeyDown(KeyCode.E) && jumpy && hasDashed && airJumping && !hasDashedF)               // Dash input
@@ -199,6 +204,7 @@ public class PlayerController : MonoBehaviour
                 moddedDash = movement + new Vector3(0, 3.5f, 0);
             }            
             rb.AddForce(moddedDash * dashForce/2, ForceMode.VelocityChange);
+            bluePart.Play();
             hasDashedF = true;
         }
 
@@ -229,8 +235,13 @@ public class PlayerController : MonoBehaviour
             _isJumping = false;
             hasDashed = false;
             airJumping = false;
-            hasDashedF = false;
             finalDash = false; 
+            redPart.Stop();
+            if (hasDashedF)
+            {
+                bluePart.Stop();
+            }
+            hasDashedF = false;
             if (jumpy && !bassDrumPlayed)
             {
                 bassDrumPlayed = true;
@@ -250,6 +261,11 @@ public class PlayerController : MonoBehaviour
             elapsedTime += Time.deltaTime; 
         }
 
+    }
+
+    private void ResetParticle1()
+    {
+        bluePart.Stop();
     }
 
     private void ResetBassDrum()
@@ -397,6 +413,19 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Exit" && count >=1000)
         {
             levelLoader.LoadNextLevel();
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                TimeManager.instance.levelOneTime = timeText.text;
+                TimeManager.instance.levelOneMin = min; 
+                TimeManager.instance.levelOneSec = sec;
+            }
+            else
+            {
+                TimeManager.instance.levelTwoTime = timeText.text;
+                TimeManager.instance.levelTwoMin = min;
+                TimeManager.instance.levelTwoSec = sec;
+            }
+            
         }
         if (other.gameObject.tag == "Security")
         {
@@ -445,6 +474,7 @@ public class PlayerController : MonoBehaviour
             //audioSource.clip = electricSFX;
             //audioSource.Play();
             Invoke("Kill", .5f);
+            cam.GetComponent<CameraController>().freeze = true;
             //rb.velocity = new Vector3(0,0,0);
             speed = 0;
             //string currentSceneName = SceneManager.GetActiveScene().name;
@@ -528,7 +558,8 @@ public class PlayerController : MonoBehaviour
             invincible = true;
             audioSource.clip = invincibleSFX;
             audioSource.Play();
-            Invoke("InvincibleReset", 8f);
+            Invoke("InvincibleReset", 25f);
+            Destroy(other.gameObject);
 
         }
 

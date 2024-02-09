@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1407.5758, g: 1271.3448, b: 1109.6329, a: 1}
+  m_IndirectSpecularColor: {r: 1181.548, g: 1017.5577, b: 793.5885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8920,6 +8920,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panSpeed: 1
   circleRadius: 3.5
+  circle: 0
+  vertical: 0
+  horizontal: 0
+  pauseDur: 0
+  forward: 0
+  panDur: 0
 --- !u!23 &1121141983
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16435,6 +16441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47580d6458613074e85f46a459511dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disappear: 0
   intensity:
     serializedVersion: 2
     m_Curve:
@@ -19328,14 +19335,21 @@ MonoBehaviour:
   winText: {fileID: 60432072}
   timeText: {fileID: 1081547406}
   startingTime: 0
-  min: 
-  sec: 
+  min: 0
+  sec: 0
   jumpForce: 7.5
   rb: {fileID: 0}
   drag: 2
   airDrag: 1
   ui: {fileID: 484803459}
+  levelLoader: {fileID: 0}
   cam: {fileID: 2132230646}
+  doorLeft: {fileID: 0}
+  doorRight: {fileID: 0}
+  redPart: {fileID: 0}
+  bluePart: {fileID: 0}
+  amountOfCamNeeded: 0
+  sceneToLoad: 0
   _isJumping: 0
   airJumping: 0
   _startJumpTime: 0
@@ -19344,6 +19358,17 @@ MonoBehaviour:
   _jumpAcceleration: 29
   maxSpeed: 0
   coinSFX: {fileID: 8300000, guid: ab1859cbda5759844b7c967242766700, type: 3}
+  bassDrumSFX: {fileID: 0}
+  jumpPowerSFX: {fileID: 0}
+  speedPowerSFX: {fileID: 0}
+  invincibleSFX: {fileID: 0}
+  alarmSFX: {fileID: 0}
+  energySFX: {fileID: 0}
+  elevatorSFX: {fileID: 0}
+  electricSFX: {fileID: 0}
+  audioSource: {fileID: 0}
+  audioSource2: {fileID: 0}
+  audioSource3: {fileID: 0}
 --- !u!54 &1994447358
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20427,7 +20452,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f07610587ff53db4d9913e3ed33d6b4c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f07610587ff53db4d9913e3ed33d6b4c,
         type: 3}
@@ -20469,6 +20494,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3280283132535674321, guid: f07610587ff53db4d9913e3ed33d6b4c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06c1c6c76faf1704ba5589f5afe4e66c, type: 2}
     - target: {fileID: -1020237996895460496, guid: f07610587ff53db4d9913e3ed33d6b4c,
         type: 3}
       propertyPath: m_TagString
@@ -20484,12 +20514,54 @@ PrefabInstance:
       propertyPath: m_TagString
       value: InvinciblePowah
       objectReference: {fileID: 0}
+    - target: {fileID: 2757798031817828523, guid: f07610587ff53db4d9913e3ed33d6b4c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757798031817828523, guid: f07610587ff53db4d9913e3ed33d6b4c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 623420616769059698, guid: f07610587ff53db4d9913e3ed33d6b4c, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f07610587ff53db4d9913e3ed33d6b4c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2118981257}
   m_SourcePrefab: {fileID: 100100000, guid: f07610587ff53db4d9913e3ed33d6b4c, type: 3}
+--- !u!1 &2118981256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f07610587ff53db4d9913e3ed33d6b4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118981255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2118981257
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118981256}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6938912767508497951, guid: f07610587ff53db4d9913e3ed33d6b4c, type: 3}
 --- !u!1 &2119839147
 GameObject:
   m_ObjectHideFlags: 0
@@ -20955,6 +21027,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  freeze: 0
   lerpSpeed: 5
   offset: {x: 0, y: 8, z: -12}
   minValue: {x: -100, y: -120, z: -250}
