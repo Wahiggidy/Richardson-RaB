@@ -602,7 +602,7 @@ public class PlayerController : MonoBehaviour
         if (ui.health <= 0)
         {
             //string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(loseScene);
         }
         rb.velocity = Vector3.zero;
         transform.position = initialLoc;
