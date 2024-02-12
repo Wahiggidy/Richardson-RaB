@@ -26,9 +26,10 @@ public class TimeManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
         if (readyForTotal)
         {
-            totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);
+            totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);   // This info is gotten from player script on level finish
         }
         
     }
