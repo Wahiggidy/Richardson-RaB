@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem bluePart; 
     public int amountOfCamNeeded;
     public float sceneToLoad;
+    public int loseScene;
     
 
     [SerializeField] private bool _isJumping;
@@ -502,7 +503,7 @@ public class PlayerController : MonoBehaviour
             if (ui.health <= 0)
             {
                 string currentSceneName = SceneManager.GetActiveScene().name;
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(loseScene);
             }
         }
 
