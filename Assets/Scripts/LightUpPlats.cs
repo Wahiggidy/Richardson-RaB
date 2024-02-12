@@ -12,6 +12,7 @@ public class LightUpPlats : MonoBehaviour
     private Renderer ren;
     private Color colorStore;
     public bool disappear;
+    public bool onlyIfJumpy;
 
     public AnimationCurve intensity;
     void Start()

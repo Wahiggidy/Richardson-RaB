@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private ConstantForce cForce;
     private Vector3 cForceDir;
     private bool speedy;
-    private bool jumpy;
+    public static bool jumpy;
     private Vector3 cForceAmount;
     private Collider coll;
     private TrailRenderer tr;
