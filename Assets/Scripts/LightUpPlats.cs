@@ -13,6 +13,7 @@ public class LightUpPlats : MonoBehaviour
     private Color colorStore;
     public bool disappear;
     public bool onlyIfJumpy;
+    private bool noDouble;
 
     public AnimationCurve intensity;
     void Start()
@@ -25,26 +26,33 @@ public class LightUpPlats : MonoBehaviour
         colorStore = ren.material.GetColor("_EmissiveColor");
 
 
+
     }
 
     IEnumerator LightUp()
     {
-        float elapsed = 0f;
-        Color currentColor = ren.material.GetColor("_EmissiveColor");
-        Color newEmissiveColor = currentColor;
-        Invoke("Reset2", duration);
-        while (elapsed < duration)
+        if (!onlyIfJumpy || PlayerController.jumpy)
         {
-            elapsed += Time.deltaTime;
-            float intense = intensity.Evaluate(elapsed / duration);
-            //ren.material.SetFloat("_EmissionIntensity", Mathf.Pow(emissionBaseIntensity, intense));
-            newEmissiveColor = currentColor * Mathf.Pow(emissionBaseIntensity, intense);
-            ren.material.SetColor("_EmissiveColor", newEmissiveColor);
 
-            //Debug.Log(ren.material.GetFloat("_EmissionIntensity"));
-            yield return null;
+
+            float elapsed = 0f;
+            //Color currentColor = ren.material.GetColor("_EmissiveColor");
+            Color currentColor = colorStore;
+            Color newEmissiveColor = currentColor;
+            Invoke("Reset2", duration);
+            noDouble = true;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float intense = intensity.Evaluate(elapsed / duration);
+                //ren.material.SetFloat("_EmissionIntensity", Mathf.Pow(emissionBaseIntensity, intense));
+                newEmissiveColor = currentColor * Mathf.Pow(emissionBaseIntensity, intense);
+                ren.material.SetColor("_EmissiveColor", newEmissiveColor);
+
+                //Debug.Log(ren.material.GetFloat("_EmissionIntensity"));
+                yield return null;
+            }
         }
-
 
 
        
@@ -53,6 +61,7 @@ public class LightUpPlats : MonoBehaviour
     private void Reset2()
     {
         ren.material.SetColor("_EmissiveColor", colorStore);
+        noDouble = false;
     }
     
     
