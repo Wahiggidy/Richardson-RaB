@@ -414,7 +414,7 @@ public class PlayerController : MonoBehaviour
             //audioSource.Play();
 
         }
-        if (other.gameObject.tag == "Exit" && count >=1000)
+        if (other.gameObject.tag == "Exit" /*&& count >=1000*/)
         {
             levelLoader.LoadNextLevel();
             if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -422,12 +422,14 @@ public class PlayerController : MonoBehaviour
                 TimeManager.instance.levelOneTime = timeText.text;
                 TimeManager.instance.levelOneMin = min; 
                 TimeManager.instance.levelOneSec = sec;
+                TimeManager.instance.score = count;
             }
             else
             {
                 TimeManager.instance.levelTwoTime = timeText.text;
                 TimeManager.instance.levelTwoMin = min;
                 TimeManager.instance.levelTwoSec = sec;
+                TimeManager.instance.score += count;
                 TimeManager.instance.GetTotal();
             }
             

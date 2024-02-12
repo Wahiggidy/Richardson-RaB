@@ -6,15 +6,26 @@ using UnityEngine.SceneManagement;
 public class MusicStopper : MonoBehaviour
 {
     // Start is called before the first frame update
+    private AudioSource musicSource; 
+    public AudioClip lossTheme;
+    public float delayMusic; 
     void Start()
     {
-        
+        musicSource = BGMusic.instance.GetComponent<AudioSource>();
+        if (SceneManager.GetActiveScene().name == "LOSE" || SceneManager.GetActiveScene().name == "LOSE 2")
+            BGMusic.instance.GetComponent<AudioSource>().Pause();
+        Invoke("StartLoseTheme", 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "LOSE" || SceneManager.GetActiveScene().name == "LOSE 2")
-            BGMusic.instance.GetComponent<AudioSource>().Pause();
+        
+    }
+
+    void StartLoseTheme()
+    {
+        musicSource.clip = lossTheme;
+        BGMusic.instance.GetComponent<AudioSource>().Play();
     }
 }

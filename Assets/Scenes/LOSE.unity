@@ -1011,6 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStartScene: 1
+  musicClip: {fileID: 8300000, guid: d3fc7d0ad178ccf4aadf5451c65f366d, type: 3}
 --- !u!1 &1187680521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStartScene: 0
+  musicClip: {fileID: 0}
 --- !u!1 &1801677715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,6 +1648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94279577db2ee5140a63894e634e63b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lossTheme: {fileID: 8300000, guid: c8e8aa6580905c441a1699ce9cb9eec0, type: 3}
+  delayMusic: 1.5
 --- !u!4 &2050448194
 Transform:
   m_ObjectHideFlags: 0

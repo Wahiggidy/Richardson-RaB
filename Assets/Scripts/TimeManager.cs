@@ -10,6 +10,7 @@ public class TimeManager : MonoBehaviour
     public static TimeManager instance;
     public  string levelOneTime; 
     public  string levelTwoTime;
+    public int score;
     public  float levelOneMin;
     public  float levelTwoMin;
     public  float levelOneSec;

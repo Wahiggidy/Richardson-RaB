@@ -9,6 +9,7 @@ public class TimerRetrieve : MonoBehaviour
     public TMP_Text levelOneTimeText;
     //public TMP_Text levelTwoTimeText;
     public TMP_Text totalTimeText;
+    public TMP_Text scoreText;
     void Start()
     {
         if (TimeManager.instance.totalTime != null)
@@ -28,7 +29,7 @@ public class TimerRetrieve : MonoBehaviour
         {
             totalTimeText.text = TimeManager.instance.levelOneTime;
         }
-
+        scoreText.text = TimeManager.instance.score.ToString();
            
         
         
