@@ -524,7 +524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 2000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f5105adeba89f142be7434615ac563f, type: 2}
   m_sharedMaterial: {fileID: -830256845907625275, guid: 6f5105adeba89f142be7434615ac563f,
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelOneTimeText: {fileID: 963347207}
   levelTwoTimeText: {fileID: 0}
-  totalTimeText: {fileID: 963347207}
+  totalTimeText: {fileID: 641536155}
 --- !u!4 &843966527
 Transform:
   m_ObjectHideFlags: 0
