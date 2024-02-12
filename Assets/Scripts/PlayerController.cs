@@ -418,13 +418,13 @@ public class PlayerController : MonoBehaviour
             levelLoader.LoadNextLevel();
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
-                TimeManager.instance.levelOneTime = timeText.text;
+                TimeManager.instance.levelOneTime = timeText;
                 TimeManager.instance.levelOneMin = min; 
                 TimeManager.instance.levelOneSec = sec;
             }
             else
             {
-                TimeManager.instance.levelTwoTime = timeText.text;
+                TimeManager.instance.levelTwoTime = timeText;
                 TimeManager.instance.levelTwoMin = min;
                 TimeManager.instance.levelTwoSec = sec;
                 TimeManager.instance.readyForTotal = true;
