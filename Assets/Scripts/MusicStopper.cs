@@ -14,7 +14,7 @@ public class MusicStopper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "LOSE")
+        if (SceneManager.GetActiveScene().name == "LOSE" || SceneManager.GetActiveScene().name == "LOSE 2")
             BGMusic.instance.GetComponent<AudioSource>().Pause();
     }
 }
