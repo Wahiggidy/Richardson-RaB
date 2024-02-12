@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private ConstantForce cForce;
     private Vector3 cForceDir;
     private bool speedy;
-    public static bool jumpy;
+    public  bool jumpy;
     private Vector3 cForceAmount;
     private Collider coll;
     private TrailRenderer tr;
@@ -602,7 +602,7 @@ public class PlayerController : MonoBehaviour
         if (ui.health <= 0)
         {
             //string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(loseScene);
         }
         rb.velocity = Vector3.zero;
         transform.position = initialLoc;
