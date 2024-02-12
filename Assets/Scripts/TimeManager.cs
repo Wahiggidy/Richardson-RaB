@@ -8,13 +8,13 @@ public class TimeManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static TimeManager instance;
-    public TMP_Text levelOneTime; 
-    public TMP_Text levelTwoTime;
-    public float levelOneMin;
-    public float levelTwoMin;
-    public float levelOneSec;
-    public float levelTwoSec;
-    public TMP_Text totalTime;
+    public  string levelOneTime; 
+    public  string levelTwoTime;
+    public  float levelOneMin;
+    public  float levelTwoMin;
+    public  float levelOneSec;
+    public  float levelTwoSec;
+    public  string totalTime;
     public bool readyForTotal;
 
     void Awake()
@@ -28,12 +28,15 @@ public class TimeManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        if (readyForTotal)
-        {
-            totalTime.text = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);   // This info is gotten from player script on level finish
-        }
+        
+        
+            
+        
         
     }
-
+    public void GetTotal()
+    {
+        totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);   // This info is gotten from player script on level finish
+    }
 
     }
