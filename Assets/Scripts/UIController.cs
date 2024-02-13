@@ -11,11 +11,23 @@ public class UIController : MonoBehaviour {
 
     public Image[] notes;
     public Sprite fullNote;
-    public Sprite emptyNote; 
+    public Sprite emptyNote;
+
+    private float bpm = 30f;
+    private float timePerBeat;
+    private float timer;
 
 
 
-	public void OnClickQuitButton()
+
+    void Start () 
+    {
+        timePerBeat = 60f / bpm;
+    }
+
+
+
+    public void OnClickQuitButton()
     {
         print("Quit button was clicked");
         Application.Quit();
@@ -47,6 +59,30 @@ public class UIController : MonoBehaviour {
             else
             {
                 notes[i].enabled = false;
+            }
+
+
+
+            // For movement
+            timer += Time.deltaTime;
+
+            float sineValue = Mathf.Sin(2 * Mathf.PI * timer / timePerBeat) * 0.5f + 0.5f;
+
+
+            for (int a = 0; a < notes.Length; a++)
+            {
+                if (notes[a].sprite == fullNote)
+                {
+                    Vector3 newPosition = notes[a].rectTransform.localPosition;
+                    newPosition.y += Mathf.Lerp(-.8f, .8f, sineValue); // Adjust the range as needed
+                    notes[a].rectTransform.localPosition = newPosition;
+                } 
+                
+            }
+
+            if (timer > timePerBeat)
+            {
+                timer -= timePerBeat;
             }
 
 
