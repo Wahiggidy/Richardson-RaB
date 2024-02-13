@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public float sceneToLoad;
     public int loseScene;
     public static bool assist;
+    private static float totalTime;
     
 
     [SerializeField] private bool _isJumping;
@@ -423,6 +424,7 @@ public class PlayerController : MonoBehaviour
                 TimeManager.instance.levelOneTime = timeText.text;
                 TimeManager.instance.levelOneMin = min; 
                 TimeManager.instance.levelOneSec = sec;
+                TimeManager.instance.totalTime = timeText.text;
                 TimeManager.instance.score = count;
             }
             else

@@ -11,10 +11,10 @@ public class TimeManager : MonoBehaviour
     public  string levelOneTime; 
     public  string levelTwoTime;
     public int score;
-    public  float levelOneMin;
-    public  float levelTwoMin;
-    public  float levelOneSec;
-    public  float levelTwoSec;
+    public  int levelOneMin;
+    public  int levelTwoMin;
+    public  int levelOneSec;
+    public  int levelTwoSec;
     public  string totalTime;
     public bool readyForTotal;
 
@@ -37,7 +37,19 @@ public class TimeManager : MonoBehaviour
     }
     public void GetTotal()
     {
-        totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelTwoSec + levelOneSec);   // This info is gotten from player script on level finish
+        //totalTime = string.Format("{0:D2}:{1:D2}", levelOneMin + levelTwoMin, levelOneSec + levelTwoSec);   // This info is gotten from player script on level finish
+
+        int totalMinutes = (int)levelOneMin + (int)levelTwoMin;
+        int totalSeconds = (int)levelOneSec + (int)levelTwoSec;
+
+        // Handle excess seconds
+        if (totalSeconds >= 60)
+        {
+            totalMinutes += totalSeconds / 60;
+            totalSeconds %= 60;
+        }
+
+        totalTime = string.Format("{0:D2}:{1:D2}", totalMinutes, totalSeconds);
     }
 
     }
