@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public int amountOfCamNeeded;
     public float sceneToLoad;
     public int loseScene;
+    public static bool assist;
     
 
     [SerializeField] private bool _isJumping;

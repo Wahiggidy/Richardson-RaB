@@ -31,5 +31,10 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void AssistModeToggle()
+    {
+        PlayerController.assist = !PlayerController.assist;
+    }
+
 
 }
