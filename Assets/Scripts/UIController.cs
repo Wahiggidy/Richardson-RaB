@@ -117,8 +117,8 @@ public class UIController : MonoBehaviour {
     {
         for (int i = 0; i < notes.Length; i++)
         {
-            if (notes[i].sprite == fullNote)
-            {
+            //if (notes[i].sprite == fullNote)
+            //{
                 Vector3 newPosition = initialPositions[i];
 
                 if (moveUp)
@@ -131,9 +131,12 @@ public class UIController : MonoBehaviour {
                 }
 
 
-
-                notes[i].rectTransform.localPosition = newPosition;
-            }
+                if (notes[i].sprite == fullNote)
+                {
+                    notes[i].rectTransform.localPosition = newPosition;
+                }
+                moveUp = !moveUp;
+            //}
         }
         moveUp = !moveUp;
 
