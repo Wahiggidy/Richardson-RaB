@@ -13,9 +13,12 @@ public class UIController : MonoBehaviour {
     public Sprite fullNote;
     public Sprite emptyNote;
 
-    private float bpm = 30f;
+    private float bpm = 120f;
     private float timePerBeat;
     private float timer;
+
+    private Vector3[] initialPositions;
+    private bool moveUp = true;
 
 
 
@@ -23,6 +26,16 @@ public class UIController : MonoBehaviour {
     void Start () 
     {
         timePerBeat = 60f / bpm;
+
+        initialPositions = new Vector3[notes.Length];
+
+        // Store the initial positions
+        for (int i = 0; i < notes.Length; i++)
+        {
+            initialPositions[i] = notes[i].rectTransform.localPosition;
+        }
+
+        InvokeRepeating("MoveUp", 0f, timePerBeat);
     }
 
 
@@ -66,7 +79,7 @@ public class UIController : MonoBehaviour {
             // For movement
             timer += Time.deltaTime;
 
-            float sineValue = Mathf.Sin(2 * Mathf.PI * timer / timePerBeat) * 0.5f + 0.5f;
+            /*float sineValue = Mathf.Sin(2 * Mathf.PI * timer / timePerBeat) * 0.5f + 0.5f;
 
 
             for (int a = 0; a < notes.Length; a++)
@@ -85,7 +98,9 @@ public class UIController : MonoBehaviour {
                 timer -= timePerBeat;
             }
 
+            */
 
+            
 
         }
 
@@ -95,6 +110,32 @@ public class UIController : MonoBehaviour {
 
 
 
+
+    }
+
+    private void MoveUp()
+    {
+        for (int i = 0; i < notes.Length; i++)
+        {
+            if (notes[i].sprite == fullNote)
+            {
+                Vector3 newPosition = initialPositions[i];
+
+                if (moveUp)
+                {
+                    newPosition.y += 20f;
+                }
+                else
+                {
+                    newPosition.y -= 20f;
+                }
+
+
+
+                notes[i].rectTransform.localPosition = newPosition;
+            }
+        }
+        moveUp = !moveUp;
 
     }
 
