@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimerRetrieve : MonoBehaviour
 {
@@ -20,20 +21,23 @@ public class TimerRetrieve : MonoBehaviour
         {
             levelOneTimeText.text = TimeManager.instance.levelOneTime;
         }
-        /*if (TimeManager.instance.levelTwoTime != null)
-        {
-            levelTwoTimeText.text = TimeManager.instance.levelTwoTime;
-        }
-        */
-        if (TimeManager.instance.levelTwoTime != null)
+        if (TimeManager.instance.levelTwoTime == null)
         {
             totalTimeText.text = TimeManager.instance.levelOneTime;
         }
+        
+        if (TimeManager.instance.levelTwoTime != null)
+        {
+            totalTimeText.text = TimeManager.instance.totalTime;
+        }
         scoreText.text = TimeManager.instance.score.ToString();
-           
-        
-        
-        Debug.Log (levelOneTimeText);
+           if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            totalTimeText.text = TimeManager.instance.totalTime;
+        }
+
+
+                Debug.Log (levelOneTimeText);
     }
 
     // Update is called once per frame
