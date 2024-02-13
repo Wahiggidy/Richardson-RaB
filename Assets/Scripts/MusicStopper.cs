@@ -14,7 +14,7 @@ public class MusicStopper : MonoBehaviour
         musicSource = BGMusic.instance.GetComponent<AudioSource>();
         if (SceneManager.GetActiveScene().name == "LOSE" || SceneManager.GetActiveScene().name == "LOSE 2")
             BGMusic.instance.GetComponent<AudioSource>().Pause();
-        Invoke("StartLoseTheme", 1.5f);
+        Invoke("StartLoseTheme", delayMusic);
     }
 
     // Update is called once per frame
